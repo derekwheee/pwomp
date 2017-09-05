@@ -4,9 +4,10 @@ const program = require('commander');
 const version = require('../package.json').version;
 const scaffold = require('../lib/scaffold')();
 const log = require('../lib/log');
-const create = require('../lib/create');
+const create = require('../lib/tasks/create');
 const serve = require('../lib/tasks/serve');
 const build = require('../lib/tasks/build');
+const SassCompiler = require('../lib/compilers/sass');
 
 program
     .version(version);
@@ -28,5 +29,19 @@ program
     .description('parse project files into build directory')
     .alias('b')
     .action(build);
+
+    program
+    .command('sass')
+    .option('-w --watch', 'Watch')
+    .description('compile sass files')
+    .action((command) => {
+        const s = new SassCompiler();
+
+        if (command.watch) {
+            s.watch();
+        } else {
+            s.compile();
+        }
+    });
 
 program.parse(process.argv);
