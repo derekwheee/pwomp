@@ -39,6 +39,7 @@
     "html-minifier": "^3.5.3",
     "inquirer": "^3.2.2",
     "promisify-node": "^0.4.0",
-    "rc": "^1.2.1"
+    "rc": "^1.2.1",
+    "winston": "^2.3.1"
   }
 }
