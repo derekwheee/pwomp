@@ -7,7 +7,9 @@ const log = require('../lib/log');
 const create = require('../lib/tasks/create');
 const serve = require('../lib/tasks/serve');
 const build = require('../lib/tasks/build');
+const JsCompiler = require('../lib/compilers/js');
 const SassCompiler = require('../lib/compilers/sass');
+const ViewCompiler = require('../lib/compilers/views');
 
 program
     .version(version);
@@ -30,17 +32,51 @@ program
     .alias('b')
     .action(build);
 
-    program
-    .command('sass')
-    .option('-w --watch', 'Watch')
-    .description('compile sass files')
-    .action((command) => {
-        const s = new SassCompiler();
+program
+    .command('compile [compiler]')
+    .description('compile files')
+    .action((compiler) => {
+        const compilers = {
+            sass : function () {
+                const s = new SassCompiler();
+                s.compile();
+            },
+            js : function () {
+                const s = new JsCompiler();
+                s.compile();
+            },
+            views : function () {
+                const s = new ViewCompiler();
+                s.compile();
+            }
+        };
 
-        if (command.watch) {
-            s.watch();
-        } else {
-            s.compile();
+        if (compiler in compilers) {
+            compilers[compiler]();
+        }
+    });
+
+program
+    .command('watch [watcher]')
+    .description('watch files')
+    .action((watcher) => {
+        const watchers = {
+            sass : function () {
+                const s = new SassCompiler();
+                s.watch();
+            },
+            js : function () {
+                const s = new JsCompiler();
+                s.watch();
+            },
+            views : function () {
+                const s = new ViewCompiler();
+                s.watch();
+            }
+        };
+
+        if (watcher in watchers) {
+            watchers[watcher]();
         }
     });
 
