@@ -1,5 +1,7 @@
 # exemplar-cli
 
+[![Build Status](https://travis-ci.org/frxnz/exemplar-cli.svg?branch=master)](https://travis-ci.org/frxnz/exemplar-cli)
+
 A command-line interface for creating, serving, and building [exemplar](https://github.com/frxnz/exemplar) projects.
 
 Exemplar is a lightly-opinionated framework for building static sites.
