@@ -16,7 +16,5 @@ test('get path', t => {
 });
 
 test.skip('load .exemplarrc', t => {
-    // save temp copy of .exemplarrc
-    // write test copy of .exemplarrc
-    // test loaded values
+    t.is(config.SETTINGS.srcDir === './test/assets/src/');
 });

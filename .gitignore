@@ -57,7 +57,4 @@ typings/
 # dotenv environment variables file
 .env
 
-tmp/
-dummy/
-src/
-dist/
+test/assets/dist

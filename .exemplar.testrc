@@ -1,0 +1,13 @@
+{
+    "srcDir" : "./test/assets/src/",
+    "viewsDir" : "views/",
+    "layoutsDir" : "views/layouts/",
+    "partialsDir" : "views/partials/",
+    "outputDir" : "./test/assets/dist/",
+    "defaultLayout" : "main",
+    "layoutReplacer" : "{{{body}}}",
+    "viewExtension" : "hbs",
+    "minifyOptions" : {
+        "collapseWhitespace" : true
+    }
+}
