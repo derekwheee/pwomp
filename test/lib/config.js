@@ -1,6 +1,8 @@
+require("../common/_bootstrap");
+
 const test = require('ava');
 const path = require('path');
-const config = require('../lib/config');
+const config = require('../../lib/config');
 
 test('loaded', t => {
 	t.true(config && 'SETTINGS' in config);
