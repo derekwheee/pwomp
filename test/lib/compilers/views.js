@@ -1,5 +1,6 @@
 require("../../common/_bootstrap");
 
+const fs = require('fs-extra');
 const path = require('path');
 const test = require('ava');
 const ViewCompiler = require('../../../lib/compilers/views');
@@ -22,36 +23,36 @@ test('prefixes', t => {
     t.is(compiler.__partialPrefix, path.normalize('partials/'));
 });
 
-test('parse metadata', t => {
-    const content = [`
-        ---
-        title: Homepage
-        controller: homepage
-        ---
-    `];
-    const metadata = compiler.__parseMetadata(content);
+test('read views', async t => {
+    t.true(compiler.views.length > 0);
+});
 
-    t.is(metadata.title, 'Homepage');
+test('read layouts', async t => {
+    t.true(compiler.layouts.length > 0);
+});
+
+test('read partials', async t => {
+    t.true(compiler.partials.length > 0);
+});
+
+test('parse metadata', async t => {
+    const content = await fs.readFile(path.resolve(config.getPath('viewsDir'), 'index.hbs'), 'utf-8');
+    const metadata = compiler.__parseMetadata(content.match(/^---[\s\S]*---/));
+
+    t.is(metadata.title, 'Home');
     t.is(metadata.controller, 'homepage');
 });
 
-test('parse view', t => {
+test('parse view', async t => {
     const data = {
-        template : `
-            ---
-            title: Homepage
-            controller: homepage
-            ---
-
-            This is a test
-        `.trim()
+        template : await fs.readFile(path.resolve(config.getPath('viewsDir'), 'index.hbs'), 'utf-8')
     };
     const view = compiler.__parseView(data, true);
 
-    t.is(view.data.title, 'Homepage');
+    t.is(view.data.title, 'Home');
     t.is(view.data.controller, 'homepage');
     t.is(view.data.layout, 'main');
-    t.is(view.template, 'This is a test');
+    t.true(view.template.includes('This is a test homepage'));
 });
 
 test('get default layout', t => {

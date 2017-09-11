@@ -15,6 +15,6 @@ test('get path', t => {
     );
 });
 
-test.skip('load .exemplarrc', t => {
-    t.is(config.SETTINGS.srcDir === './test/assets/src/');
+test('load .exemplarrc', t => {
+    t.is(config.SETTINGS.srcDir, './test/assets/src/');
 });

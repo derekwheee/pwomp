@@ -59,4 +59,6 @@ typings/
 .env
 
 .vscode/
-test/assets/dist
+dist/
+src/
+test/assets/src
