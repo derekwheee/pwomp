@@ -35,6 +35,25 @@ test('parse metadata', t => {
     t.is(metadata.controller, 'homepage');
 });
 
+test('parse view', t => {
+    const data = {
+        template : `
+            ---
+            title: Homepage
+            controller: homepage
+            ---
+
+            This is a test
+        `.trim()
+    };
+    const view = compiler.__parseView(data, true);
+
+    t.is(view.data.title, 'Homepage');
+    t.is(view.data.controller, 'homepage');
+    t.is(view.data.layout, 'main');
+    t.is(view.template, 'This is a test');
+});
+
 test('get default layout', t => {
     t.is(compiler.__getLayout({}), config.SETTINGS.defaultLayout);
 });
