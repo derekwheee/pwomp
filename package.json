@@ -1,24 +1,24 @@
 {
-  "name": "exemplar-cli",
-  "version": "0.0.8",
-  "description": "A command line interface for Exemplar",
+  "name": "pwomp",
+  "version": "0.1.0",
+  "description": "Pwomp is a Node.js static site generator",
   "bin": {
-    "exemplar": "./bin/cli.js"
+    "pwomp": "./bin/cli.js"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc ava",
-    "testbuild": "cross-env NODE_ENV=test exemplar build"
+    "testbuild": "cross-env NODE_ENV=test pwomp build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/frxnz/exemplar-cli.git"
+    "url": "git+https://github.com/frxnz/pwomp.git"
   },
   "author": "Derek Wheelden",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/frxnz/exemplar-cli/issues"
+    "url": "https://github.com/frxnz/pwomp/issues"
   },
-  "homepage": "https://github.com/frxnz/exemplar-cli#readme",
+  "homepage": "https://github.com/frxnz/pwomp#readme",
   "ava": {
     "files": [
       "test/**/*.js",
