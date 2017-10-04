@@ -11,7 +11,7 @@ test.cb.before(t => {
     compiler = new ViewCompiler();
 
     // View compiler needs to read some files before it's ready
-    setTimeout(t.end, 50);
+    setTimeout(t.end, 100);
 });
 
 test('constructor', async t => {
@@ -33,30 +33,6 @@ test('read layouts', async t => {
 
 test('read partials', async t => {
     t.true(compiler.partials.length > 0);
-});
-
-test('parse metadata', async t => {
-    const content = await fs.readFile(path.resolve(config.getPath('viewsDir'), 'index.hbs'), 'utf-8');
-    const metadata = compiler.__parseMetadata(content.match(/^---[\s\S]*---/));
-
-    t.is(metadata.title, 'Home');
-    t.is(metadata.controller, 'homepage');
-});
-
-test('parse view', async t => {
-    const data = {
-        template : await fs.readFile(path.resolve(config.getPath('viewsDir'), 'index.hbs'), 'utf-8')
-    };
-    const view = compiler.__parseView(data, true);
-
-    t.is(view.data.title, 'Home');
-    t.is(view.data.controller, 'homepage');
-    t.is(view.data.layout, 'main');
-    t.true(view.template.includes('Pwomp'));
-});
-
-test('get default layout', t => {
-    t.is(compiler.__getLayout({}), config.SETTINGS.defaultLayout);
 });
 
 test('view destination path', t => {
