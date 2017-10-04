@@ -52,7 +52,7 @@ test('parse view', async t => {
     t.is(view.data.title, 'Home');
     t.is(view.data.controller, 'homepage');
     t.is(view.data.layout, 'main');
-    t.true(view.template.includes('This is a test homepage'));
+    t.true(view.template.includes('exemplar'));
 });
 
 test('get default layout', t => {

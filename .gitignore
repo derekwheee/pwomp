@@ -60,5 +60,3 @@ typings/
 
 .vscode/
 dist/
-src/
-test/assets/src
