@@ -16,7 +16,7 @@ program
 
 program
     .command('new [name]')
-    .description('create new Exemplar project in the current directory')
+    .description('create new Pwomp project in the current directory')
     .alias('n')
     .action(create);
 
